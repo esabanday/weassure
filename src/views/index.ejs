@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="/images/logo.jpg" alt="WeAssure Logo" class="logo-icon">
+                <div class="logo-text-container">
+                    <span class="logo-text">WeAssure</span>
+                    <span class="logo-subtitle">Biometrics & Screening</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="/services/fingerprinting">Mobile Ink Fingerprinting</a>
+                <a href="/services/screening">Drug Screening</a>
+                <a href="/quote" class="quote-btn">Schedule Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Professional Mobile<br>Fingerprinting Services</h1>
+            <p>FBI-approved fingerprinting at your convenience</p>
+            <a href="/quote" class="cta-button">Schedule an Appointment</a>
+        </div>
+    </header>
+
+    <section class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <% services.forEach(service => { %>
+                    <div class="service-card">
+                        <img src="<%= service.image %>" alt="<%= service.name %>">
+                        <h3><%= service.name %></h3>
+                        <p><%= service.description %></p>
+                        <a href="/services/<%= service.name.toLowerCase().replace(/\s+/g, '-') %>" class="learn-more">Learn More →</a>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+
+    <section class="process">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Schedule</h3>
+                    <p>Book your appointment online</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We Come to You</h3>
+                    <p>Our mobile unit arrives at your location</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Quick Process</h3>
+                    <p>Professional fingerprinting in minutes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>
+</body>
+</html> 

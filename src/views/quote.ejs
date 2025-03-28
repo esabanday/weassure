@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Quote - Banday Glam</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <%- include('partials/nav') %>
+
+    <div class="quote-page">
+        <div class="container">
+            <h1>Request a Quote</h1>
+            <p class="subtitle">Tell us about your project and we'll get back to you within 24 hours.</p>
+
+            <form class="quote-form" id="quoteForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone (optional)</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="service">Service Type</label>
+                    <select id="service" name="service" required>
+                        <option value="">Select a service</option>
+                        <option value="t-shirts">Custom T-Shirts</option>
+                        <option value="business-cards">Business Cards</option>
+                        <option value="banners">Banners & Signs</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Estimated Quantity</label>
+                    <input type="number" id="quantity" name="quantity" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="details">Project Details</label>
+                    <textarea id="details" name="details" rows="5" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="file">Upload Design Files (optional)</label>
+                    <input type="file" id="file" name="file" accept=".pdf,.ai,.psd,.jpg,.png">
+                    <p class="file-help">Max file size: 10MB. Accepted formats: PDF, AI, PSD, JPG, PNG</p>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Quote Request</button>
+            </form>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+    <script>
+        document.getElementById('quoteForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            try {
+                const response = await fetch('/api/quote', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Quote request submitted successfully!');
+                    e.target.reset();
+                } else {
+                    throw new Error(data.message || 'Something went wrong');
+                }
+            } catch (error) {
+                alert('Error submitting quote request: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html> 
