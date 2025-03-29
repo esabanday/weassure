@@ -633,4 +633,77 @@ body {
     .quote-page h1 {
         font-size: 2rem;
     }
+}
+
+/* Service Detail Page */
+.service-detail-page {
+    margin-top: 90px;
+    padding: 4rem 0;
+    background: var(--light-gray);
+    min-height: calc(100vh - 90px);
+}
+
+.service-detail-page h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary);
+    text-align: center;
+}
+
+.service-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow-sm);
+}
+
+.service-details h2 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.service-details h3 {
+    font-size: 1.4rem;
+    color: var(--secondary);
+    margin: 1.5rem 0 1rem;
+}
+
+.service-details p {
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.service-details ul {
+    list-style: none;
+    padding-left: 1.5rem;
+}
+
+.service-details ul li {
+    position: relative;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.service-details ul li::before {
+    content: "•";
+    color: var(--accent);
+    position: absolute;
+    left: -1.5rem;
+}
+
+@media (max-width: 768px) {
+    .service-detail-page {
+        margin-top: 140px;
+        padding: 2rem 1rem;
+    }
+
+    .service-content {
+        padding: 1.5rem;
+    }
+
+    .service-detail-page h1 {
+        font-size: 2rem;
+    }
 } 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Details - Ink Fingerprinting</title>
+    <title><%= service %> - WeAssure</title>
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -14,7 +14,59 @@
         <div class="container">
             <h1><%= service %></h1>
             <div class="service-content">
-                <p>Service details coming soon...</p>
+                <% if (service === 'Mobile Ink Fingerprinting') { %>
+                    <div class="service-details">
+                        <h2>Professional Mobile Fingerprinting Service</h2>
+                        <p>We bring professional fingerprinting services directly to your location, making it convenient and efficient for both individuals and businesses.</p>
+                        
+                        <h3>Base Price: $54.75</h3>
+                        
+                        <h3>Our Service Includes:</h3>
+                        <ul>
+                            <li>Sturdy 9x12 envelope (80lb text paper)</li>
+                            <li>Two custom printed address labels</li>
+                            <li>Prepaid postage for fingerprint card and additional sheet</li>
+                            <li>Direct handoff to postal service</li>
+                            <li>No added cost for distances under 20 miles</li>
+                        </ul>
+
+                        <h3>Travel Fees:</h3>
+                        <ul>
+                            <li>$10 for 20-29.9 miles</li>
+                            <li>$20 for 30-44.9 miles</li>
+                            <li>$45 for 45+ miles</li>
+                        </ul>
+                    </div>
+                <% } else if (service === 'Mobile Drug Testing') { %>
+                    <div class="service-details">
+                        <h2>Professional Mobile Drug Testing Services</h2>
+                        <p>We provide comprehensive drug testing services with innovative quick-result testing options, bringing our expertise directly to your location.</p>
+                        
+                        <h3>Testing Methods:</h3>
+                        <ul>
+                            <li>Oral swab testing (rapid results)</li>
+                            <li>Urine testing</li>
+                            <li>DOT breath alcohol testing</li>
+                        </ul>
+
+                        <h3>Service Types:</h3>
+                        <ul>
+                            <li>DOT-compliant testing</li>
+                            <li>Pre-employment screening</li>
+                            <li>Random testing programs</li>
+                            <li>Post-accident testing</li>
+                            <li>Reasonable suspicion testing</li>
+                        </ul>
+
+                        <h3>Features:</h3>
+                        <ul>
+                            <li>Customizable panel options</li>
+                            <li>On-site service</li>
+                            <li>Professional collection</li>
+                            <li>Confidential results</li>
+                        </ul>
+                    </div>
+                <% } %>
             </div>
         </div>
     </div>

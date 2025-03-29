@@ -71,7 +71,16 @@ app.get('/quote', (req, res) => {
 });
 
 app.get('/services/:service', (req, res) => {
-  res.render('service-detail', { service: req.params.service });
+  const service = req.params.service;
+  const validServices = ['mobile-ink-fingerprinting', 'mobile-drug-testing'];
+  
+  if (!validServices.includes(service)) {
+    return res.redirect('/');
+  }
+  
+  res.render('service-detail', { 
+    service: service === 'mobile-ink-fingerprinting' ? 'Mobile Ink Fingerprinting' : 'Mobile Drug Testing'
+  });
 });
 
 app.post('/api/quote', (req, res) => {
