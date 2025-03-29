@@ -23,28 +23,44 @@ app.get('/', (req, res) => {
     title: 'WeAssure - Professional Fingerprinting Services',
     services: [
       {
-        name: 'Ink Fingerprinting',
-        description: `• Professional & Certified Staff
-        • Government approved FBI FD-258 cards
-• Fast & Stress-Free Process
-• Mobile Service at Your Location
-• Convenience with You in Mind, Service includes:
-• 9X12 Security Envolope
-• Custom Shipping Labels`
+        name: 'Mobile Ink Fingerprinting',
+        description: `Professional and efficient fingerprinting that delivers greater convenience at a lesser price.
+
+Base Price: $54.75
+
+Our Service Includes:
+• Sturdy 9x12 envelope (80lb text paper)
+• Two custom printed address labels
+• Prepaid postage for fingerprint card and additional sheet
+• Direct handoff to postal service
+• No added cost for distances under 20 miles
+
+Travel Fees:
+• $10 for 20-29.9 miles
+• $20 for 30-44.9 miles
+• $45 for 45+ miles`
       },
       {
-        name: 'Drug Screening',
-        description: `• DOT & Non-DOT Testing
-• Quick Results
-• Mobile Testing Available
-• Confidential Service`
-      },
-      {
-        name: 'Background Checks',
-        description: `• Comprehensive Screening
-• Fast Turnaround Time
-• Secure & Compliant
-• Digital Delivery`
+        name: 'Mobile Drug Testing',
+        description: `Skilled and streamlined drug screening with innovative quick-result testing options.
+
+Testing Methods:
+• Oral swab testing (rapid results)
+• Urine testing
+• DOT breath alcohol testing
+
+Service Types:
+• DOT-compliant testing
+• Pre-employment screening
+• Random testing programs
+• Post-accident testing
+• Reasonable suspicion testing
+
+Features:
+• Customizable panel options
+• On-site service
+• Professional collection
+• Confidential results`
       }
     ]
   });

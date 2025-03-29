@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get a Quote - Banday Glam</title>
+    <title>Schedule Service - WeAssure</title>
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -12,12 +12,12 @@
 
     <div class="quote-page">
         <div class="container">
-            <h1>Request a Quote</h1>
-            <p class="subtitle">Tell us about your project and we'll get back to you within 24 hours.</p>
+            <h1>Schedule Your Service</h1>
+            <p class="subtitle">Book your mobile fingerprinting or drug testing service. We'll confirm your appointment within 2 hours.</p>
 
             <form class="quote-form" id="quoteForm">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" required>
                 </div>
 
@@ -27,38 +27,63 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">Phone (optional)</label>
-                    <input type="tel" id="phone" name="phone">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
                 </div>
 
                 <div class="form-group">
                     <label for="service">Service Type</label>
                     <select id="service" name="service" required>
                         <option value="">Select a service</option>
-                        <option value="t-shirts">Custom T-Shirts</option>
-                        <option value="business-cards">Business Cards</option>
-                        <option value="banners">Banners & Signs</option>
-                        <option value="other">Other</option>
+                        <option value="ink-fingerprinting">Mobile Ink Fingerprinting</option>
+                        <option value="drug-testing-oral">Drug Testing - Oral Swab</option>
+                        <option value="drug-testing-urine">Drug Testing - Urine</option>
+                        <option value="dot-testing">DOT Drug & Alcohol Testing</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="quantity">Estimated Quantity</label>
-                    <input type="number" id="quantity" name="quantity" min="1" required>
+                    <label for="location">Service Location</label>
+                    <input type="text" id="location" name="location" placeholder="Enter the address where you need the service" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="details">Project Details</label>
-                    <textarea id="details" name="details" rows="5" required></textarea>
+                    <label for="preferred_date">Preferred Date</label>
+                    <input type="date" id="preferred_date" name="preferred_date" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="file">Upload Design Files (optional)</label>
-                    <input type="file" id="file" name="file" accept=".pdf,.ai,.psd,.jpg,.png">
-                    <p class="file-help">Max file size: 10MB. Accepted formats: PDF, AI, PSD, JPG, PNG</p>
+                    <label for="preferred_time">Preferred Time</label>
+                    <select id="preferred_time" name="preferred_time" required>
+                        <option value="">Select preferred time</option>
+                        <option value="morning">Morning (9am - 12pm)</option>
+                        <option value="afternoon">Afternoon (12pm - 4pm)</option>
+                        <option value="evening">Evening (4pm - 7pm)</option>
+                    </select>
                 </div>
 
-                <button type="submit" class="submit-btn">Submit Quote Request</button>
+                <div class="form-group">
+                    <label for="participants">Number of Participants</label>
+                    <input type="number" id="participants" name="participants" min="1" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="details">Additional Information</label>
+                    <textarea id="details" name="details" rows="4" placeholder="Please provide any specific requirements or questions you may have"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Service Type</label>
+                    <div class="radio-group">
+                        <input type="radio" id="immediate" name="service_urgency" value="immediate" required>
+                        <label for="immediate">Immediate Service (Within 2-4 hours)</label>
+                        <br>
+                        <input type="radio" id="scheduled" name="service_urgency" value="scheduled">
+                        <label for="scheduled">Scheduled Service</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Request</button>
             </form>
         </div>
     </div>
@@ -66,6 +91,13 @@
     <%- include('partials/footer') %>
 
     <script>
+        // Auto-select service type based on URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceType = urlParams.get('type');
+        if (serviceType) {
+            document.querySelector(`input[value="${serviceType}"]`).checked = true;
+        }
+
         document.getElementById('quoteForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
@@ -76,13 +108,13 @@
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    alert('Quote request submitted successfully!');
+                    alert('Service request submitted successfully! We will contact you shortly to confirm your appointment.');
                     e.target.reset();
                 } else {
                     throw new Error(data.message || 'Something went wrong');
                 }
             } catch (error) {
-                alert('Error submitting quote request: ' + error.message);
+                alert('Error submitting request: ' + error.message);
             }
         });
     </script>
