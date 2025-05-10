@@ -7,17 +7,26 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        var locationId = "5948702470868223143";
+        var accountId = "109481461027874100069"
+    </script>
+    <script type="module" crossorigin src="https://embeddable-app-widgets.s3.us-east-1.amazonaws.com/image-widget-v1.js"></script>
+    <link rel="stylesheet" crossorigin href="https://embeddable-app-widgets.s3.us-east-1.amazonaws.com/image-widget-v1.css">
+    <script type="module" crossorigin src="https://embeddable-app-widgets.s3.us-east-1.amazonaws.com/review-widget-v2.js"></script>
+    <link rel="stylesheet" crossorigin href="https://embeddable-app-widgets.s3.us-east-1.amazonaws.com/review-widget-v2.css">
 </head>
 <body>
     <%- include('partials/nav') %>
 
     <header class="hero">
-        <div class="hero-content">
+        <div class="hero-content mobile-padding">
             <h1>WeAssure Biometrics<br>and Screening Services</h1>
-            <p>We are dedicated to providing reliable, consistent and cost effective solutions for your on site biometric identity and screening needs. As a mobile drug testing and ink fingerprinting provider, our goal is to bring convenience to your doorstep, giving you more time to focus on your other priorities.</p>
-            <p>Whether an individual seeking to satisfy a requirement or a business ensuring compliance, our standard is prompt, organized service and attention to detail. We assure your biometric and screening services are completed with professionalism, accuracy and at a competitive price.</p>
+            <p>WeAssure Biometrics and Screening Services, located in Kansas City, MO, is your premier partner for professional mobile fingerprinting and comprehensive drug screening solutions. Our expertise includes on-site DOT and non-DOT drug testing, as well as breath alcohol testing, catering to both individual and business needs. We prioritize convenience and reliability, bringing essential fingerprinting and drug testing services directly to you, ensuring compliance and peace of mind. With a focus on accuracy and confidentiality, WeAssure is committed to delivering quality services tailored to your specific requirements. Trust us for seamless biometrics and screening experiences that adhere to industry standards and regulations.</p>
         </div>
     </header>
+ 
+    <div locationId="5948702470868223143" class="review-widget"></div>
 
     <section class="services">
         <div class="container">
@@ -34,30 +43,9 @@
             </div>
         </div>
     </section>
-
-    <section class="process">
-        <div class="container">
-            <h2>How It Works</h2>
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Schedule</h3>
-                    <p>Book your appointment online</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>We Come to You</h3>
-                    <p>Our mobile unit arrives at your location</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Quick Process</h3>
-                    <p>Professional fingerprinting in minutes</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <div class="nav-right">
+        <a href="/quote?type=scheduled" class="nav-button schedule">Schedule an Appointment</a>
+  </div>
     <%- include('partials/footer') %>
 </body>
 </html> 

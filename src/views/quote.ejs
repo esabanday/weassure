@@ -6,6 +6,75 @@
     <title>Schedule Service - WeAssure</title>
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .form-step {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .form-step.active {
+            display: block;
+            opacity: 1;
+        }
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .progress-step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        .progress-step.active {
+            background: #007bff;
+            color: white;
+        }
+        .progress-line {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 0;
+        }
+        .progress-line-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #007bff;
+            transition: width 0.3s ease;
+        }
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <%- include('partials/nav') %>
@@ -15,75 +84,105 @@
             <h1>Schedule Your Service</h1>
             <p class="subtitle">Book your mobile fingerprinting or drug testing service. We'll confirm your appointment within 2 hours.</p>
 
+            <div class="progress-bar">
+                <div class="progress-line">
+                    <div class="progress-line-fill" style="width: 0%"></div>
+                </div>
+                <div class="progress-step active">1</div>
+                <div class="progress-step">2</div>
+                <div class="progress-step">3</div>
+                <div class="progress-step">4</div>
+            </div>
+
             <form class="quote-form" id="quoteForm">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="service">Service Type</label>
-                    <select id="service" name="service" required>
-                        <option value="">Select a service</option>
-                        <option value="ink-fingerprinting">Mobile Ink Fingerprinting</option>
-                        <option value="drug-testing-oral">Drug Testing - Oral Swab</option>
-                        <option value="drug-testing-urine">Drug Testing - Urine</option>
-                        <option value="dot-testing">DOT Drug & Alcohol Testing</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="location">Service Location</label>
-                    <input type="text" id="location" name="location" placeholder="Enter the address where you need the service" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="preferred_date">Preferred Date</label>
-                    <input type="date" id="preferred_date" name="preferred_date" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="preferred_time">Preferred Time</label>
-                    <select id="preferred_time" name="preferred_time" required>
-                        <option value="">Select preferred time</option>
-                        <option value="morning">Morning (9am - 12pm)</option>
-                        <option value="afternoon">Afternoon (12pm - 4pm)</option>
-                        <option value="evening">Evening (4pm - 7pm)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="participants">Number of Participants</label>
-                    <input type="number" id="participants" name="participants" min="1" value="1" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="details">Additional Information</label>
-                    <textarea id="details" name="details" rows="4" placeholder="Please provide any specific requirements or questions you may have"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Service Type</label>
-                    <div class="radio-group">
-                        <input type="radio" id="immediate" name="service_urgency" value="immediate" required>
-                        <label for="immediate">Immediate Service (Within 2-4 hours)</label>
-                        <br>
-                        <input type="radio" id="scheduled" name="service_urgency" value="scheduled">
-                        <label for="scheduled">Scheduled Service</label>
+                <!-- Step 1: Service Selection -->
+                <div class="form-step active" data-step="1">
+                    <div class="form-group">
+                        <label for="service">What service do you need?</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a service</option>
+                            <option value="ink-fingerprinting">Mobile Ink Fingerprinting</option>
+                            <option value="drug-testing-oral">Drug Testing - Oral Swab</option>
+                            <option value="drug-testing-urine">Drug Testing - Urine</option>
+                            <option value="dot-testing">DOT Drug & Alcohol Testing</option>
+                        </select>
+                    </div>
+                    <div class="form-navigation">
+                        <div></div>
+                        <button type="button" class="btn btn-primary next-step">Next</button>
                     </div>
                 </div>
 
-                <button type="submit" class="submit-btn">Submit Request</button>
+                <!-- Step 2: Contact Information -->
+                <div class="form-step" data-step="2">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                        <button type="button" class="btn btn-primary next-step">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Location and Schedule -->
+                <div class="form-step" data-step="3">
+                    <div class="form-group">
+                        <label for="location">Service Location</label>
+                        <input type="text" id="location" name="location" placeholder="Enter the address where you need the service" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferred_date">Preferred Date</label>
+                        <input type="date" id="preferred_date" name="preferred_date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferred_time">Preferred Time</label>
+                        <select id="preferred_time" name="preferred_time" required>
+                            <option value="">Select preferred time</option>
+                            <option value="morning">Morning (9am - 12pm)</option>
+                            <option value="afternoon">Afternoon (12pm - 4pm)</option>
+                            <option value="evening">Evening (4pm - 7pm)</option>
+                        </select>
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                        <button type="button" class="btn btn-primary next-step">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Additional Details -->
+                <div class="form-step" data-step="4">
+                    <div class="form-group">
+                        <label for="participants">Number of Participants</label>
+                        <input type="number" id="participants" name="participants" min="1" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="details">Additional Information</label>
+                        <textarea id="details" name="details" rows="4" placeholder="Please provide any specific requirements or questions you may have"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Type</label>
+                        <div class="radio-group">
+                            <input type="radio" id="immediate" name="service_urgency" value="immediate" required>
+                            <label for="immediate">Immediate Service (Within 2-4 hours)</label>
+                            <br>
+                            <input type="radio" id="scheduled" name="service_urgency" value="scheduled">
+                            <label for="scheduled">Scheduled Service</label>
+                        </div>
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -98,7 +197,59 @@
             document.querySelector(`input[value="${serviceType}"]`).checked = true;
         }
 
-        document.getElementById('quoteForm').addEventListener('submit', async (e) => {
+        // Form step navigation
+        const form = document.getElementById('quoteForm');
+        const steps = form.querySelectorAll('.form-step');
+        const progressSteps = document.querySelectorAll('.progress-step');
+        const progressLine = document.querySelector('.progress-line-fill');
+        let currentStep = 0;
+
+        function updateProgress() {
+            progressSteps.forEach((step, index) => {
+                step.classList.toggle('active', index <= currentStep);
+            });
+            progressLine.style.width = `${(currentStep / (steps.length - 1)) * 100}%`;
+        }
+
+        function showStep(stepIndex) {
+            steps.forEach((step, index) => {
+                step.classList.toggle('active', index === stepIndex);
+            });
+            currentStep = stepIndex;
+            updateProgress();
+        }
+
+        // Next button click
+        document.querySelectorAll('.next-step').forEach(button => {
+            button.addEventListener('click', () => {
+                const currentStepElement = button.closest('.form-step');
+                const inputs = currentStepElement.querySelectorAll('input, select, textarea');
+                let isValid = true;
+
+                inputs.forEach(input => {
+                    if (input.hasAttribute('required') && !input.value) {
+                        isValid = false;
+                        input.classList.add('error');
+                    } else {
+                        input.classList.remove('error');
+                    }
+                });
+
+                if (isValid) {
+                    showStep(currentStep + 1);
+                }
+            });
+        });
+
+        // Previous button click
+        document.querySelectorAll('.prev-step').forEach(button => {
+            button.addEventListener('click', () => {
+                showStep(currentStep - 1);
+            });
+        });
+
+        // Form submission
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
             try {
@@ -110,6 +261,7 @@
                 if (response.ok) {
                     alert('Service request submitted successfully! We will contact you shortly to confirm your appointment.');
                     e.target.reset();
+                    showStep(0);
                 } else {
                     throw new Error(data.message || 'Something went wrong');
                 }
